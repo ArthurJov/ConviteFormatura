@@ -1,0 +1,11 @@
+Pasta reservada para as fotos da Ludmila.
+
+Arquivos esperados:
+- hero.jpg     → foto principal da Seção 1 (Capa). Sugestão: foto com toga na poltrona dourada, portrait.
+- closing.jpg  → foto de fundo da Seção 5 (Encerramento). Pode ser a mesma ou outra foto — será desfocada e escurecida.
+
+Dicas de compressão:
+- Use https://squoosh.app ou https://tinypng.com
+- Qualidade alvo: 80–85%
+- Tamanho alvo: < 300 KB por foto
+- Formato: JPEG (.jpg)

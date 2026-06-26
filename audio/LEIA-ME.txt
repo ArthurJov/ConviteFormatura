@@ -1,0 +1,11 @@
+Pasta reservada para a trilha sonora de fundo.
+
+Arquivo esperado:
+- background.mp3  → música ambiente, suave e elegante (ex.: piano instrumental, lo-fi luxury)
+
+Dicas:
+- Formato: MP3 (compatível com todos os browsers mobile)
+- Tamanho recomendado: < 5 MB (para carregamento rápido no celular)
+- O arquivo é carregado com preload="none" — só baixa quando o usuário der play.
+- O site já tenta autoplay após o splash (pode ser bloqueado pelo browser — normal).
+  Nesse caso o botão ♪ pulsará suavemente para chamar atenção.
