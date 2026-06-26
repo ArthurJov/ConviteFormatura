@@ -296,7 +296,7 @@
 
     .scroll-hint {
       position: absolute;
-      bottom: env(safe-area-inset-bottom, 2rem);
+      bottom: max(3rem, env(safe-area-inset-bottom));
       left: 50%;
       transform: translateX(-50%);
       z-index: 5;
@@ -327,7 +327,8 @@
       height: 18px;
       border-right: 1.5px solid rgba(201,168,76,0.4);
       border-bottom: 1.5px solid rgba(201,168,76,0.4);
-      transform: rotate(45deg) translateY(-8px);
+      margin-top: -12px;
+      transform: rotate(45deg);
       animation: chev 1.6s ease-in-out 0.2s infinite;
     }
 
@@ -593,6 +594,17 @@
       max-width: 260px;
     }
 
+    .rsvp-inst {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: clamp(0.62rem, 2.5vw, 0.75rem);
+      color: rgba(245,240,232,0.75);
+      text-align: center;
+      line-height: 1.55;
+      padding-top: 0.5rem;
+      margin-bottom: -0.5rem;
+    }
+
     .rsvp-form {
       width: 100%;
       max-width: 320px;
@@ -848,7 +860,7 @@
     ═══════════════════════════════════════════ */
     #scroll-nav {
       position: fixed;
-      right: 1.2rem;
+      right: 0.6rem;
       top: 50%;
       transform: translateY(-50%);
       z-index: 1000;
@@ -858,17 +870,17 @@
       pointer-events: none;
     }
     .nav-dot {
-      width: 4px;
-      height: 4px;
+      width: 3px;
+      height: 3px;
       border-radius: 50%;
-      background: rgba(201,168,76,0.3);
+      background: rgba(201,168,76,0.15);
       transition: all 0.4s var(--ease-out);
       margin: 0 auto;
     }
     .nav-dot.active {
-      width: 6px;
-      height: 6px;
-      background: rgba(201,168,76,1);
+      width: 5px;
+      height: 5px;
+      background: rgba(201,168,76,0.9);
       box-shadow: 0 0 8px rgba(201,168,76,0.4);
     }
 
@@ -925,7 +937,7 @@
 <!-- ════════════════════════════════
      ÁUDIO
 ════════════════════════════════ -->
-<audio id="bg-audio" loop preload="none">
+<audio id="bg-audio" loop preload="auto" autoplay>
   <source src="audio/Laurinha Costa - Six Seven (Clipe Oficial) DJ Cabello & DJ Tchouzen - Laurinha Costa.mp3" type="audio/mpeg">
 </audio>
 <button id="audio-btn" aria-label="Play/Pause música">♪</button>
@@ -960,7 +972,7 @@
     </div>
 
     <div class="scroll-hint" aria-hidden="true">
-      <span>Deslize</span>
+      
       <div class="chevron"></div>
       <div class="chevron2"></div>
     </div>
@@ -1058,11 +1070,8 @@
     <div class="typographic-ornament reveal">— ✦ —</div>
 
     <h2 class="rsvp-title reveal d1">Confirme sua<br>Presença</h2>
-    <p class="rsvp-sub reveal d2" id="rsvp-sub-text">
-      Sua confirmação é esperada até<br><strong id="rsvp-deadline"><!-- JS --></strong>
-    </p>
 
-    <form class="rsvp-form reveal d3" id="rsvp-form" novalidate>
+    <form class="rsvp-form reveal d2" id="rsvp-form" novalidate>
       <div class="form-field" id="field-nome">
         <input type="text" id="inp-nome" placeholder=" " autocomplete="given-name" inputmode="text">
         <label for="inp-nome">Nome</label>
@@ -1074,6 +1083,12 @@
         <label for="inp-sob">Sobrenome</label>
         <span class="field-err" aria-live="polite">Por favor, informe seu sobrenome</span>
       </div>
+
+      <div class="typographic-ornament" style="font-size: 0.8rem; margin: 0.5rem 0 0;" aria-hidden="true">✦</div>
+      <p class="rsvp-inst">
+        Sua presença é muito importante para nós! Solicitamos que confirme sua participação o quanto antes.<br><br>
+        Informamos que o acesso ao cerimonial será permitido apenas às pessoas que tiverem presença confirmada na lista. Agradecemos a compreensão e esperamos celebrar esse momento tão especial com você!
+      </p>
 
       <button type="submit" class="btn-rsvp" id="btn-rsvp">
         <span class="btn-txt">Confirmar Presença</span>
@@ -1123,7 +1138,6 @@
    CONFIGURAÇÕES EDITÁVEIS — mexa só aqui
 ═══════════════════════════════════════════════════════ */
 const EVENT_DATE      = new Date('2026-08-02T15:00:00-03:00');
-const RSVP_DEADLINE   = '[DATA A DEFINIR]';   // Ex: '15 de Julho de 2026'
 const WHATSAPP_NUMBER = '5571982080832';
 const AUDIO_SRC       = 'audio/Laurinha Costa - Six Seven (Clipe Oficial) DJ Cabello & DJ Tchouzen - Laurinha Costa.mp3';
 /* ══════════════════════════════════════════════════════ */
@@ -1134,10 +1148,6 @@ const splash = document.getElementById('splash');
 window.addEventListener('load', () => {
   setTimeout(() => splash.classList.add('hidden'), 2300);
 });
-
-
-/* ── RSVP DEADLINE ──────────────────────────────────── */
-document.getElementById('rsvp-deadline').textContent = RSVP_DEADLINE;
 
 
 /* ── HERO: kinetic typography ───────────────────────── */
@@ -1524,8 +1534,9 @@ const firstTouch = () => { if (!playing) tryPlay(); };
 document.addEventListener('touchstart', firstTouch, { once: true, passive: true });
 document.addEventListener('click', firstTouch, { once: true });
 
-// Attempt autoplay after splash
-window.addEventListener('load', () => setTimeout(tryPlay, 2500));
+// Attempt autoplay immediately
+window.addEventListener('load', tryPlay);
+tryPlay();
 
 </script>
 </body>

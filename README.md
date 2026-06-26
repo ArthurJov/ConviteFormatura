@@ -1,35 +1,28 @@
-# Convite de Formatura Digital — Ludmila Paixão
+# Convite de Formatura - Ludmila Paixão
 
-Este é um site mobile-first de convite de formatura premium para Ludmila Paixão (Estética e Cosmética 2026).
+**Acesse o projeto online:** [https://arthurjov.github.io/ConviteFormatura/](https://arthurjov.github.io/ConviteFormatura/)
 
-## Características
+Bem-vindo(a) ao projeto do convite digital de formatura da Ludmila Paixão (Estética e Cosmética - 2026). Este site foi criado para ser um convite moderno, elegante e interativo, focado em entregar a melhor experiência para os convidados, especialmente pelo celular.
 
-- **Mobile-First & Snap Scroll**: Criado especificamente para proporcionar uma experiência fluida no celular.
-- **Tipografia Cinética**: Animações de entrada letra a letra no nome principal (agora com quebras de linha automáticas e responsivas, impedindo corte no meio da palavra).
-- **Parallax de Profundidade**: Efeitos interativos que respondem ao movimento do mouse e à inclinação do celular (giroscópio), além de parallax progressivo e suave durante o scroll.
-- **Partículas em Canvas**: Efeitos elegantes de partículas douradas flutuantes na tela inicial e "confetti" na tela final, renderizados via HTML5 Canvas.
-- **Trilha Sonora**: Botão interativo para reproduzir áudio ambiente.
+## O que tem neste site?
 
-## Estrutura de Arquivos
+- **Visual Elegante:** Design premium com tons de preto e dourado, trazendo sofisticação para o convite.
+- **Efeito 3D:** Quando acessado pelo celular, a imagem de fundo se move suavemente de acordo com a inclinação do aparelho (efeito de paralaxe).
+- **Música de Fundo:** Uma trilha sonora agradável que toca automaticamente, ou pede um clique do usuário (caso o navegador bloqueie o som), para criar a atmosfera perfeita.
+- **Contagem Regressiva:** Um cronômetro mostrando exatamente quantos dias, horas, minutos e segundos faltam para o grande dia.
+- **Confirmação de Presença (RSVP):** Um formulário simples onde o convidado preenche o nome e confirma a presença, enviando uma mensagem automaticamente pelo WhatsApp.
+- **Integração com Mapas:** Um botão que abre o local do evento diretamente no GPS (Google Maps).
 
-- `index.html`: Arquivo principal contendo toda a estrutura HTML, estilização CSS (Tailwind/Vanilla) e scripts integrados. Sem dependências externas além do Google Fonts.
-- `img/`: Pasta contendo as imagens utilizadas no convite (`hero.jpg`, `closing.jpg`, etc).
-- `audio/`: Pasta com o arquivo de áudio de fundo (`background.mp3`).
+## Como funciona?
 
-## Configurações Editáveis (Variáveis)
+Este projeto foi construído de forma leve e rápida, usando apenas as tecnologias fundamentais da web (HTML, CSS e JavaScript), sem depender de sistemas pesados ou complexos. Isso garante que o site carregue muito rápido e não trave em nenhum celular.
 
-Dentro do arquivo `index.html`, logo no início da tag `<script>`, existem variáveis de fácil edição para configurar o evento sem precisar mexer em códigos complexos:
+Para quem quiser ver o código, o arquivo principal é o `index.html`. Nele estão:
+- **Os textos:** Todas as informações visíveis no site.
+- **A aparência (CSS):** Cores, tamanhos e fontes personalizadas.
+- **As interações (JS):** A lógica que faz o cronômetro girar, o áudio tocar e o envio direto para o WhatsApp.
 
-```javascript
-const EVENT_DATE      = new Date('2026-08-02T15:00:00-03:00');
-const RSVP_DEADLINE   = '[DATA A DEFINIR]';
-const WHATSAPP_NUMBER = '5571982080832';
-const AUDIO_SRC       = 'audio/background.mp3';
-```
+A música do projeto está dentro da pasta `audio/` e as imagens estão organizadas na pasta `img/`.
 
-## Como Visualizar
-
-Para experimentar o convite em sua capacidade máxima:
-1. Abra o arquivo `index.html` no Google Chrome ou Safari.
-2. Para testar a responsividade, utilize o DevTools (F12) simulando a visualização em dispositivos móveis (ex: iPhone 14, Galaxy S22).
-3. Caso queira testar a animação giroscópica de parallax, hospede o site (via GitHub Pages, Vercel ou Live Server configurado) e acesse através do seu smartphone.
+---
+*Projeto desenvolvido com carinho para celebrar a formatura em Estética e Cosmética (2026).*
