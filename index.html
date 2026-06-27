@@ -36,7 +36,7 @@
       --font-script: 'Great Vibes', cursive;
       --font-sans:   'Montserrat', system-ui, sans-serif;
 
-      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     /* Textura Premium de Papelaria/Ruído Global */
@@ -158,21 +158,21 @@
     ═══════════════════════════════════════════ */
     .reveal {
       opacity: 0;
-      transform: translateY(26px);
+      transform: translateY(40px);
       filter: blur(10px);
-      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out), filter 0.8s var(--ease-out);
+      transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out), filter 1.2s var(--ease-out);
     }
     .reveal-left {
       opacity: 0;
-      transform: translateX(-28px);
+      transform: translateX(-40px);
       filter: blur(10px);
-      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out), filter 0.8s var(--ease-out);
+      transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out), filter 1.2s var(--ease-out);
     }
     .reveal-right {
       opacity: 0;
-      transform: translateX(28px);
+      transform: translateX(40px);
       filter: blur(10px);
-      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out), filter 0.8s var(--ease-out);
+      transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out), filter 1.2s var(--ease-out);
     }
     .reveal.vis, .reveal-left.vis, .reveal-right.vis {
       opacity: 1;
@@ -616,7 +616,7 @@
       font-weight: 600;
       color: var(--gold);
       text-align: center;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       margin-bottom: 2.5rem;
     }
@@ -626,10 +626,13 @@
       background: rgba(13, 26, 18, 0.65);
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
-      border: 1px solid rgba(201, 168, 76, 0.2);
+      border: 1px solid rgba(201, 168, 76, 0.25);
       border-radius: 16px;
       padding: 2.5rem 1.8rem;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.15), 
+        inset 0 -1px 1px rgba(0, 0, 0, 0.3),
+        0 20px 40px rgba(0,0,0,0.6);
       margin-bottom: 3rem; /* Espaçamento compacto, sem stacking fixo */
     }
 
@@ -637,7 +640,7 @@
       font-family: var(--font-sans);
       font-size: 0.75rem;
       font-weight: 600;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: -0.5rem;
@@ -810,7 +813,7 @@
       background: rgba(13, 26, 18, 0.5);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(201, 168, 76, 0.15);
+      border: 1px solid rgba(201, 168, 76, 0.25);
       border-radius: 24px;
       padding: 2.5rem 1.5rem;
       width: 100%;
@@ -819,7 +822,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      box-shadow: 
+        inset 0 1px 1px rgba(255, 255, 255, 0.15), 
+        inset 0 -1px 1px rgba(0, 0, 0, 0.3),
+        0 20px 40px rgba(0,0,0,0.6);
     }
 
     .rsvp-ornament {
@@ -933,9 +939,9 @@
       width: 100%;
       margin-top: 0.4rem;
       padding: 1rem 1.5rem;
-      background: linear-gradient(110deg, var(--gold-dk) 0%, var(--gold) 45%, var(--gold-lt) 55%, var(--gold) 100%);
-      background-size: 200% 100%;
-      background-position: 0% 0%;
+      background: linear-gradient(110deg, var(--gold-dk) 0%, var(--gold) 45%, var(--cream) 50%, var(--gold) 55%, var(--gold-dk) 100%);
+      background-size: 250% 100%;
+      animation: liquidGold 4s infinite linear;
       border: none;
       font-family: var(--font-sans);
       font-size: 0.65rem;
@@ -952,6 +958,10 @@
       align-items: center;
       justify-content: center;
       min-height: 52px;
+    }
+    @keyframes liquidGold {
+      0% { background-position: 100% 0%; }
+      100% { background-position: -150% 0%; }
     }
     .btn-rsvp:active { transform: scale(0.98); }
     .btn-rsvp:hover  { background-position: 100% 0%; }
