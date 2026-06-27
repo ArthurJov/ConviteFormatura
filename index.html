@@ -581,7 +581,7 @@
     #agradecimentos {
       background: var(--green);
       height: auto;
-      min-height: 100dvh;
+      min-height: auto;
       overflow: visible;
       justify-content: flex-start;
       padding: 0;
@@ -709,7 +709,7 @@
     /* Porta-Retrato Digital da Família Completa */
     .agr-familia-completa {
       width: 100%;
-      margin: 2rem 0 4rem;
+      margin: 2rem 0 0;
       padding: 0;
       position: relative;
       z-index: 2;
@@ -726,87 +726,97 @@
        SECTION 5 — A TURMA
     ═══════════════════════════════════════════ */
     #turma {
-      background: var(--green);
-      padding: 0 0 6rem 0; /* Padding superior zerado para o edge-to-edge conectar */
+      background: var(--black);
+      height: 100dvh;
+      min-height: 100dvh;
+      padding: 0;
       display: flex;
       flex-direction: column;
       position: relative;
+      overflow: hidden;
+      justify-content: flex-end;
     }
     
-    .turma-edge-wrap {
-      width: 100%;
-      position: relative;
-      margin-bottom: -15vw; /* Puxa o texto para cima do fade da imagem */
+    .turma-bg {
+      position: absolute;
+      inset: 0;
       z-index: 1;
-    }
-    .turma-edge-img {
       width: 100%;
-      height: auto;
+      height: 100%;
+    }
+    
+    .turma-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
       display: block;
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
-      mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    }
+    
+    .turma-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(to top, var(--black) 0%, rgba(10,10,10,0.5) 35%, transparent 60%);
+      pointer-events: none;
     }
 
     .turma-editorial-content {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       width: 100%;
       max-width: 800px;
       margin: 0 auto;
-      padding: 0 1.5rem;
+      padding: 0 1.5rem 10dvh;
       text-align: center;
     }
+    
     .turma-title {
       font-family: var(--font-serif);
-      font-size: clamp(2.5rem, 9vw, 4rem);
+      font-size: clamp(2.5rem, 9vw, 4.5rem);
       font-weight: 600;
       color: var(--gold);
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.9);
     }
+    
     .turma-text {
       font-family: var(--font-sans);
       font-size: clamp(0.85rem, 3.5vw, 1.1rem);
       color: var(--cream);
       line-height: 1.8;
-      margin-bottom: 2rem;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
-    }
-
-    .turma-asymmetric-wrap {
-      width: 90%;
-      max-width: 600px;
-      align-self: flex-end;
-      margin-top: -2rem; /* Sobreposição sutil */
-      margin-right: -1rem; /* Deslocamento pra fora da tela (assimetria) */
-      position: relative;
-      z-index: 3;
-      padding-right: 1rem;
-    }
-    .turma-asymmetric-img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 12px;
-      box-shadow: -10px 15px 40px rgba(0,0,0,0.6);
-      border: 1px solid rgba(201,168,76,0.15);
-    }
-
-    @media (min-width: 768px) {
-      .turma-edge-wrap { margin-bottom: -10vw; }
-      .turma-asymmetric-wrap { margin-top: -4rem; margin-right: 5%; padding-right: 0; }
+      margin-bottom: 0;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
     }
 
     /* ═══════════════════════════════════════════
-       SECTION 5 — RSVP
+       SECTION RSVP (TOPO)
     ═══════════════════════════════════════════ */
     #rsvp {
-      background: var(--black);
+      background: var(--green);
+      height: auto;
+      min-height: auto;
+      padding: 4rem 1.2rem;
+      position: relative;
       justify-content: center;
-      padding: 2rem 2.2rem;
-      box-shadow: inset 0 0 100px rgba(201,168,76,0.06);
+    }
+
+    .rsvp-glass-card {
+      background: rgba(13, 26, 18, 0.5);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(201, 168, 76, 0.15);
+      border-radius: 24px;
+      padding: 2.5rem 1.5rem;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
     }
 
     .rsvp-ornament {
@@ -1255,6 +1265,39 @@
     <div class="typographic-ornament reveal d4">— ✦ —</div>
   </section>
 
+  <!-- ──── RSVP (REPOSICIONADO PARA TOPO) ──── -->
+  <section id="rsvp" aria-label="Confirmar presença">
+    <div class="rsvp-glass-card reveal">
+      <div class="typographic-ornament">— ✦ —</div>
+      <h2 class="rsvp-title">Confirme sua<br>Presença</h2>
+
+      <form class="rsvp-form" id="rsvp-form" novalidate>
+        <div class="form-field" id="field-nome">
+          <input type="text" id="inp-nome" placeholder=" " autocomplete="given-name" inputmode="text">
+          <label for="inp-nome">Nome</label>
+          <span class="field-err" aria-live="polite">Por favor, informe seu nome</span>
+        </div>
+
+        <div class="form-field" id="field-sob">
+          <input type="text" id="inp-sob" placeholder=" " autocomplete="family-name" inputmode="text">
+          <label for="inp-sob">Sobrenome</label>
+          <span class="field-err" aria-live="polite">Por favor, informe seu sobrenome</span>
+        </div>
+
+        <div class="typographic-ornament" style="font-size: 0.8rem; margin: 0.5rem 0 0;" aria-hidden="true">✦</div>
+        <p class="rsvp-inst">
+          Sua presença é muito importante para nós! Solicitamos que confirme sua participação o quanto antes.<br><br>
+          O acesso ao cerimonial será permitido apenas às pessoas com presença confirmada na lista.
+        </p>
+
+        <button type="submit" class="btn-rsvp" id="btn-rsvp">
+          <span class="btn-txt">Confirmar Presença</span>
+          <div class="btn-loader" aria-hidden="true"></div>
+        </button>
+      </form>
+    </div>
+  </section>
+
   <!-- ──── SEÇÃO 3: DETALHES DO EVENTO ──── -->
   <section id="event" aria-label="Detalhes do evento">
 
@@ -1353,58 +1396,19 @@
     </div>
   </section>
 
-  <!-- ──── SEÇÃO 5: A TURMA (EDITORIAL) ──── -->
+  <!-- ──── SEÇÃO 5: A TURMA (FULLSCREEN EDITORIAL) ──── -->
   <section id="turma" aria-label="A Turma">
-    <!-- Imagem Edge-to-Edge com Mask Dupla -->
-    <div class="turma-edge-wrap reveal">
-      <img src="img/turma completa de beca jogando chapeu para cima.jpg" alt="Turma de Beca Jogando Chapéu" class="turma-edge-img" loading="lazy">
+    <div class="turma-bg reveal">
+      <img src="img/turma completa.jpg" alt="Turma na Praia" class="turma-bg-img" loading="lazy">
     </div>
+    <div class="turma-vignette" aria-hidden="true"></div>
 
-    <!-- Título e Texto Editorial sobrepostos -->
     <div class="turma-editorial-content reveal d1">
       <h2 class="turma-title">A Turma</h2>
       <p class="turma-text">
         Compartilhar esta caminhada com vocês tornou tudo ainda mais especial. Entre desafios, aprendizados e muitas conquistas, construímos lembranças que levarei para sempre.
       </p>
     </div>
-
-    <!-- Imagem Assimétrica (Alinhada à Direita) -->
-    <div class="turma-asymmetric-wrap reveal d2">
-      <img src="img/turma completa de jaleco.jpg" alt="Turma de Jaleco" class="turma-asymmetric-img" loading="lazy">
-    </div>
-  </section>
-
-  <!-- ──── SEÇÃO 5: RSVP ──── -->
-  <section id="rsvp" aria-label="Confirmar presença">
-
-    <div class="typographic-ornament reveal">— ✦ —</div>
-
-    <h2 class="rsvp-title reveal d1">Confirme sua<br>Presença</h2>
-
-    <form class="rsvp-form reveal d2" id="rsvp-form" novalidate>
-      <div class="form-field" id="field-nome">
-        <input type="text" id="inp-nome" placeholder=" " autocomplete="given-name" inputmode="text">
-        <label for="inp-nome">Nome</label>
-        <span class="field-err" aria-live="polite">Por favor, informe seu nome</span>
-      </div>
-
-      <div class="form-field" id="field-sob">
-        <input type="text" id="inp-sob" placeholder=" " autocomplete="family-name" inputmode="text">
-        <label for="inp-sob">Sobrenome</label>
-        <span class="field-err" aria-live="polite">Por favor, informe seu sobrenome</span>
-      </div>
-
-      <div class="typographic-ornament" style="font-size: 0.8rem; margin: 0.5rem 0 0;" aria-hidden="true">✦</div>
-      <p class="rsvp-inst">
-        Sua presença é muito importante para nós! Solicitamos que confirme sua participação o quanto antes.<br><br>
-        Informamos que o acesso ao cerimonial será permitido apenas às pessoas que tiverem presença confirmada na lista. Agradecemos a compreensão e esperamos celebrar esse momento tão especial com você!
-      </p>
-
-      <button type="submit" class="btn-rsvp" id="btn-rsvp">
-        <span class="btn-txt">Confirmar Presença</span>
-        <div class="btn-loader" aria-hidden="true"></div>
-      </button>
-    </form>
   </section>
 
   <!-- ──── SEÇÃO 6: ENCERRAMENTO ──── -->
