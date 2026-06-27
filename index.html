@@ -20,23 +20,33 @@
     :root {
       --black:    #0a0a0a;
       --black2:   #0f0f0f;
-      --gold:     #c9a84c;
-      --gold-lt:  #e8d48a;
-      --gold-dk:  #a07a28;
+      --gold: #C9A84C;
+      --gold-lt: #E2C982;
+      --gold-dk: #987B2E;
       --green:    #0d1a12;
-      --cream:    #f5f0e8;
+      --cream: #F5F0E8;
       --white:    #ffffff;
 
       --gold-10:  rgba(201,168,76,0.10);
       --gold-20:  rgba(201,168,76,0.20);
-      --gold-35:  rgba(201,168,76,0.35);
-      --gold-60:  rgba(201,168,76,0.60);
+      --gold-35: rgba(201,168,76, 0.35);
+      --gold-60: rgba(201,168,76, 0.6);
 
       --font-serif:  'Cormorant Garamond', Georgia, serif;
       --font-script: 'Great Vibes', cursive;
       --font-sans:   'Montserrat', system-ui, sans-serif;
 
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Textura Premium de Papelaria/Ruído Global */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23a)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
     }
 
     html {
@@ -149,21 +159,25 @@
     .reveal {
       opacity: 0;
       transform: translateY(26px);
-      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+      filter: blur(10px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out), filter 0.8s var(--ease-out);
     }
     .reveal-left {
       opacity: 0;
       transform: translateX(-28px);
-      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+      filter: blur(10px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out), filter 0.8s var(--ease-out);
     }
     .reveal-right {
       opacity: 0;
       transform: translateX(28px);
-      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+      filter: blur(10px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out), filter 0.8s var(--ease-out);
     }
     .reveal.vis, .reveal-left.vis, .reveal-right.vis {
       opacity: 1;
       transform: none;
+      filter: blur(0);
     }
     .d1 { transition-delay: 0.12s; }
     .d2 { transition-delay: 0.24s; }
@@ -202,7 +216,14 @@
       transform: scale(1.06);
       transition: opacity 1.4s var(--ease-out), transform 2.5s var(--ease-out);
     }
-    .hero-bg img.loaded { opacity: 1; transform: scale(1); }
+    .hero-bg img.loaded { 
+      opacity: 1; 
+      animation: kenBurns 20s ease-out infinite alternate;
+    }
+    @keyframes kenBurns {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
 
     .hero-vignette {
       position: absolute;
@@ -555,7 +576,231 @@
     }
 
     /* ═══════════════════════════════════════════
-       SECTION 4 — RSVP
+       SECTION 4 — AGRADECIMENTOS E GALERIA
+    ═══════════════════════════════════════════ */
+    #agradecimentos {
+      background: var(--green);
+      height: auto;
+      min-height: 100dvh;
+      overflow: visible;
+      justify-content: flex-start;
+      padding: 0;
+      position: relative;
+    }
+
+    .agr-hero-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      -webkit-mask-image: linear-gradient(to top, transparent 0%, black 25%, black 100%);
+      mask-image: linear-gradient(to top, transparent 0%, black 25%, black 100%);
+      position: relative;
+      z-index: 1;
+    }
+
+    .agr-content-wrapper {
+      width: 100%;
+      max-width: 800px;
+      margin: -15dvh auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 1.2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .agr-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 8vw, 3rem);
+      font-weight: 600;
+      color: var(--gold);
+      text-align: center;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+
+    .agr-deus-card {
+      width: 100%;
+      background: rgba(13, 26, 18, 0.65);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(201, 168, 76, 0.2);
+      border-radius: 16px;
+      padding: 2.5rem 1.8rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      margin-bottom: 3rem; /* Espaçamento compacto, sem stacking fixo */
+    }
+
+    .agr-subheading {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: -0.5rem;
+      text-align: center;
+    }
+
+    .agr-text {
+      width: 100%;
+      font-family: var(--font-sans);
+      font-size: clamp(0.75rem, 3.2vw, 1rem);
+      color: var(--cream);
+      line-height: 1.7;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .agr-quote {
+      font-style: italic;
+      color: var(--gold-lt);
+      font-size: 0.95em;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .agr-quote span {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.85em;
+      opacity: 0.7;
+    }
+
+    /* Família: Background c/ Degradê (Safe-Zone) */
+    .agr-familia-section {
+      position: relative;
+      width: 100%;
+      padding-top: 60vw; /* Empurra o texto pra baixo para mostrar os rostos no topo */
+      margin-top: 0;
+    }
+    @media (min-width: 768px) {
+      .agr-familia-section { padding-top: 50vh; }
+    }
+
+    .agr-familia-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: auto;
+      z-index: 1;
+    }
+    .agr-familia-bg img {
+      width: 100%; 
+      height: auto;
+      display: block;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 80%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 80%, transparent 100%);
+    }
+
+    .agr-familia-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.2rem 4rem;
+    }
+
+    /* Porta-Retrato Digital da Família Completa */
+    .agr-familia-completa {
+      width: 100%;
+      margin: 2rem 0 4rem;
+      padding: 0;
+      position: relative;
+      z-index: 2;
+    }
+    .agr-familia-completa img {
+      width: 100%;
+      height: auto;
+      display: block;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION 5 — A TURMA
+    ═══════════════════════════════════════════ */
+    #turma {
+      background: var(--green);
+      padding: 0 0 6rem 0; /* Padding superior zerado para o edge-to-edge conectar */
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    
+    .turma-edge-wrap {
+      width: 100%;
+      position: relative;
+      margin-bottom: -15vw; /* Puxa o texto para cima do fade da imagem */
+      z-index: 1;
+    }
+    .turma-edge-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    }
+
+    .turma-editorial-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+    .turma-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 9vw, 4rem);
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+    }
+    .turma-text {
+      font-family: var(--font-sans);
+      font-size: clamp(0.85rem, 3.5vw, 1.1rem);
+      color: var(--cream);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    }
+
+    .turma-asymmetric-wrap {
+      width: 90%;
+      max-width: 600px;
+      align-self: flex-end;
+      margin-top: -2rem; /* Sobreposição sutil */
+      margin-right: -1rem; /* Deslocamento pra fora da tela (assimetria) */
+      position: relative;
+      z-index: 3;
+      padding-right: 1rem;
+    }
+    .turma-asymmetric-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      box-shadow: -10px 15px 40px rgba(0,0,0,0.6);
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+
+    @media (min-width: 768px) {
+      .turma-edge-wrap { margin-bottom: -10vw; }
+      .turma-asymmetric-wrap { margin-top: -4rem; margin-right: 5%; padding-right: 0; }
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION 5 — RSVP
     ═══════════════════════════════════════════ */
     #rsvp {
       background: var(--black);
@@ -721,7 +966,7 @@
     }
 
     /* ═══════════════════════════════════════════
-       SECTION 5 — CLOSING
+       SECTION 6 — CLOSING
     ═══════════════════════════════════════════ */
     #closing {
       background: var(--black);
@@ -951,6 +1196,8 @@
   <div class="nav-dot"></div>
   <div class="nav-dot"></div>
   <div class="nav-dot"></div>
+  <div class="nav-dot"></div>
+  <div class="nav-dot"></div>
 </nav>
 
 <div id="scroll-wrap">
@@ -1064,7 +1311,70 @@
     </a>
   </section>
 
-  <!-- ──── SEÇÃO 4: RSVP ──── -->
+  <!-- ──── SEÇÃO 4: AGRADECIMENTOS E GALERIA ──── -->
+  <section id="agradecimentos" aria-label="Agradecimentos">
+    <!-- Hero da Seção (Canudo) -->
+    <img src="img/agradecimento.jpg" alt="Formatura Canudo" class="agr-hero-img" loading="lazy">
+    
+    <div class="agr-content-wrapper">
+      <div class="typographic-ornament reveal d1" aria-hidden="true">— ✦ —</div>
+      <h2 class="agr-title reveal d2">Agradecimentos</h2>
+      
+      <!-- Card Deus (Compacto) -->
+      <div class="agr-deus-card reveal d3">
+        <p class="agr-subheading">A Deus</p>
+        <p class="agr-quote">
+          "Consagre ao Senhor tudo o que você faz, e os seus planos serão bem-sucedidos."<br>
+          <span>(Provérbios 16:3)</span>
+        </p>
+        <div class="agr-text">
+          <p>Primeiramente, agradeço a Deus. Hoje meu coração transborda de gratidão por ter chegado até aqui. Entre desafios, estudos e orações, Tua mão me sustentou, me deu forças e realizou os meus sonhos de carreira. Sem a Tua glória, eu não teria rumo nenhum.</p>
+          <p>Tomo a Tua palavra como minha certeza para o futuro. Entrego este diploma e o início da minha jornada profissional em Tuas mãos. Que cada passo meu seja guiado pela Tua sabedoria e dedicado a Ti. Obrigado por ser o meu sustento e por esta vitória!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Família com Fundo Integrado Seguro -->
+    <div class="agr-familia-section reveal">
+      <div class="agr-familia-bg">
+        <img src="img/familia principal.jpg" alt="Família Principal" loading="lazy">
+      </div>
+      <div class="agr-familia-content">
+        <p class="agr-subheading" style="text-align: center">À Família</p>
+        <div class="agr-text">
+          <p>À minha família, que é o meu porto seguro e a base de tudo. Sem o amor incondicional, a paciência e o colo de vocês nos dias difíceis, este sonho jamais seria possível. Cada renúncia silenciosa de vocês e cada palavra de incentivo me moldaram e me trouxeram até aqui. Esta conquista não carrega apenas o meu nome, ela tem o suor, o coração e a alma de cada um de vocês. Esta vitória é nossa! Muito obrigado por nunca desistirem dos meus sonhos. Amo vocês.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Porta-Retrato Digital da Família Completa -->
+    <div class="agr-familia-completa reveal">
+      <img src="img/familia completa.jpg" alt="Família Completa" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ──── SEÇÃO 5: A TURMA (EDITORIAL) ──── -->
+  <section id="turma" aria-label="A Turma">
+    <!-- Imagem Edge-to-Edge com Mask Dupla -->
+    <div class="turma-edge-wrap reveal">
+      <img src="img/turma completa de beca jogando chapeu para cima.jpg" alt="Turma de Beca Jogando Chapéu" class="turma-edge-img" loading="lazy">
+    </div>
+
+    <!-- Título e Texto Editorial sobrepostos -->
+    <div class="turma-editorial-content reveal d1">
+      <h2 class="turma-title">A Turma</h2>
+      <p class="turma-text">
+        Compartilhar esta caminhada com vocês tornou tudo ainda mais especial. Entre desafios, aprendizados e muitas conquistas, construímos lembranças que levarei para sempre.
+      </p>
+    </div>
+
+    <!-- Imagem Assimétrica (Alinhada à Direita) -->
+    <div class="turma-asymmetric-wrap reveal d2">
+      <img src="img/turma completa de jaleco.jpg" alt="Turma de Jaleco" class="turma-asymmetric-img" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ──── SEÇÃO 5: RSVP ──── -->
   <section id="rsvp" aria-label="Confirmar presença">
 
     <div class="typographic-ornament reveal">— ✦ —</div>
@@ -1097,7 +1407,7 @@
     </form>
   </section>
 
-  <!-- ──── SEÇÃO 5: ENCERRAMENTO ──── -->
+  <!-- ──── SEÇÃO 6: ENCERRAMENTO ──── -->
   <section id="closing" aria-label="Encerramento">
     <div class="closing-bg">
       <img src="img/closing.jpg" alt="" aria-hidden="true">
